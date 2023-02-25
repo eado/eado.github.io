@@ -12,8 +12,8 @@
         }
         .gray { color: gray; }
         body {
-            margin-left: 10%;
-            margin-right: 10%;
+            padding-left: 10%;
+            padding-right: 10%;
         }
         html { 
             background-color: black;
@@ -48,8 +48,12 @@
         }
         .projects {
             list-style: none;
+            list-style-position: inside;
+            padding: 0;
+            padding-bottom: 25%;
         }
         .projects li {
+            list-style-position: inside;
             margin-bottom: 60px;
         }
         .projects li * {
@@ -59,9 +63,52 @@
             width: 100px;
             border-radius: 20px;
         }
+
+        .projects .left {
+            position: absolute;
+            left: 3%;
+            /* margin-top: 20vh; */
+        }
+        .projects .right {
+            position: absolute;
+            right: 3%;
+            /* margin-top: 20vh; */
+        }
     </style>
+    <script>
+        var current = 2;
+
+        function right() {
+            console.log(current)
+            var nodes = document.getElementById("projects").children
+            if (current < nodes.length - 1) {
+                current += 1;
+                update();
+            }
+        }
+
+        function left() {
+            console.log(current)
+            if (current > 2) {
+                current -= 1;
+                update();
+            }
+        }
+
+        function update() {
+            var nodes = document.getElementById("projects").children;
+            for (var i = 2; i < nodes.length; i++) {
+                if (i != current) {
+                    nodes[i].style.display = "none";
+                } else {
+                    nodes[i].style.display = "";
+                }
+            }
+            document.getElementById("number").innerText = (current - 1) + "/" + (nodes.length - 2);
+        }
+    </script>
 </head>
-<body>
+<body onload="update()">
     <div class="header">
         <img class="id" src="pfp.jpg">
         <h1>Omar Elamri</h1>
@@ -76,9 +123,11 @@
     <p>I'm Omar Elamri, an aspiring, self-taught, young software developer offering 9 years of experience engineering software for both enterprise and educational organizations. I have a deep background in iOS and web application development&mdash;an innovator with deep knowledge in latest industry trends and advancements.</p>
     <p>Feel free to <a href="mailto:omar@omarelamri.me">email me</a> or send me a message on <a href="https://linkedin.com/in/omarelamri">my Linkedin</a>! Always willing to chat!</p>
     <br>
-    <h2>Projects</h2>
+    <h2>Projects (<span id="number">X/X</span>)</h2>
     <br>
-    <ul class="projects">
+    <ul id="projects" class="projects">
+        <ion-icon class="left" name="ios-arrow-dropleft-circle" size="large" onclick="left()"></ion-icon>
+        <ion-icon class="right" name="ios-arrow-dropright-circle" size="large" onclick="right()"></ion-icon>
         <li>
             <img src="foodscoop.png" />
             <h3>FoodScoop (under construction)</h3>
@@ -164,7 +213,7 @@
             <ul>
                 <li><a href="https://github.com/eado/Cupcake-WWDC">Source Code</a></li>
                 <li><a href="https://omarelamri.me/cupcake-guide/">Guide</a></li>
-                <li><a href="TutorialFull.mov">Video Demo</li>
+                <li><a href="TutorialFull.mov">Video Demo</a></li>
             </ul>
         </li>
     </ul>
