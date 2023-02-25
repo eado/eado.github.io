@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
     <title>Omar Elamri</title>
     <style>
         * {
@@ -22,29 +23,64 @@
             color: white;
         }
         .id {
-            height: 7rem;
-            width: 7rem;
+            height: 12rem;
+            width: 12rem;
             border-radius: 7rem;
             object-fit: cover;
+            margin-top: 20px;
+        }
+        .header {
+            /* display: flex; */
+            text-align: center;
+            /* width: 100vw; */
+        }
+        .links {
+            text-align: center;
+            display: inline-block;
+            list-style: none; /* Remove the bullet points */
+            padding: 0; /* Remove default padding */
+            margin: 0; /* Remove default margin */
+        }
+        .links li {
+            margin-left: 5px;
+            margin-right: 5px; /* Add space between list items */
+            float: left;
+        }
+        .projects {
+            list-style: none;
+        }
+        .projects li {
+            margin-bottom: 60px;
+        }
+        .projects li * {
+            margin-bottom: 3px;
+        }
+        .projects li img {
+            width: 100px;
+            border-radius: 20px;
         }
     </style>
 </head>
 <body>
-    <img class="id" src="pfp.jpg">
-    <h1>Omar Elamri</h1>
-    <ul>
-        <li><a href="https://github.com/eado">GitHub</a></li>
-        <li><a href="https://linkedin.com/in/omarelamri">Linkedin</a></li>
-        <li><a href="mailto:omar@omarelamri.me">Email</a></li>
-        <li><a href="Resume.pdf">Resume</a></li>
-    </ul>
+    <div class="header">
+        <img class="id" src="pfp.jpg">
+        <h1>Omar Elamri</h1>
+        <ul class="links">
+            <li><a href="https://github.com/eado"><ion-icon name="logo-github" size="large"></ion-icon></a></li>
+            <li><a href="https://linkedin.com/in/omarelamri"><ion-icon name="logo-linkedin" size="large"></ion-icon></a></li>
+            <li><a href="mailto:omar@omarelamri.me"><ion-icon name="ios-mail" size="large"></ion-icon></a></li>
+            <li><a href="Resume.pdf"><ion-icon name="ios-document" size="large"></ion-icon></a></li>
+        </ul>
+    </div>
     <h2>Hi there!</h2>
-    <p>I'm Omar Elamri, an aspiring, self-taught, young software developer offering 9 years of experience engineering software for both enterprise and educational organizations. I have a deep background in iOS and web application development--an innovator with deep knowledge in latest industry trends and advancements.</p>
+    <p>I'm Omar Elamri, an aspiring, self-taught, young software developer offering 9 years of experience engineering software for both enterprise and educational organizations. I have a deep background in iOS and web application development&mdash;an innovator with deep knowledge in latest industry trends and advancements.</p>
     <p>Feel free to <a href="mailto:omar@omarelamri.me">email me</a> or send me a message on <a href="https://linkedin.com/in/omarelamri">my Linkedin</a>! Always willing to chat!</p>
     <br>
     <h2>Projects</h2>
-    <ul>
+    <br>
+    <ul class="projects">
         <li>
+            <img src="foodscoop.png" />
             <h3>FoodScoop (under construction)</h3>
             <i>Our project aims to strengthen the UCLA dining experience by providing a better interface for dining menus, nutritional information, and meal planning.</i>
             <p>Worked on with: Surya Subbarao, Weiqi Yu, Aminah Khan and Arya Gharib</p>
@@ -57,6 +93,7 @@
             </ul>
         </li>
         <li>
+            <img src="opentalk.png" />
             <h3>OpenTalk</h3>
             <i>At OpenTalk, our mission is to empower those who struggle in social situations through our AI-powered chatbot, which uses AR to simulate and practice various stressful social scenarios. </i>
             <p>Worked on with: <a href="https://www.linkedin.com/in/zhaomeng-chen/">Zhaomeng Chen</a> and <a href="https://www.linkedin.com/in/arya-gharib/">Arya Gharib</a></p>
@@ -69,6 +106,7 @@
             </ul>
         </li>
         <li>
+            <img src="digitr.png" />
             <h3>Digitr</h3>
             <i>Digitr is a digital student hallway pass app that provides a smart, simple, scalable and convenient way of managing student passes.</i>
             <br><br>
@@ -82,6 +120,7 @@
             </ul>
         </li>
         <li>
+            <img src="fullcircle.png" />
             <h3>Full Circle</h3>
             <i>An app that connects in-need students to specialized mentors. Used at Minnetonka Public Schools for their at risk mentor-mentee program.</i>
             <p>Key technologies used: React, Google Cloud Run, MongoDB</p>
