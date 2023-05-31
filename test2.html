@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .portfolio {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; /* for smooth scrolling on iOS */
+}
+
+.slide {
+  flex: 0 0 auto;
+  width: 80%;
+  margin: 0 10%;
+  scroll-snap-align: center;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+}
+
+.gallery-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.gallery {
+  max-width: 80%;
+  max-height: 80%;
+  overflow: hidden;
+  position: relative;
+}
+
+.close-gallery {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .slide {
+    width: 90%;
+    margin: 0 5%;
+  }
+}
+
+/* Hover effect */
+.slide:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Active slide */
+.slide:target {
+  outline: none;
+}
+
+.slide:target .gallery-overlay {
+  display: flex;
+}
+
+.slide:target .slide-content {
+  opacity: 0.3;
+  filter: blur(5px);
+}
+
+.slide:target .slide-content h3 {
+  display: none;
+}
+
+.slide:target .gallery {
+  display: block;
+}
+
+
+
+
+    </style>
+</head>
+<body>
+    <section class="portfolio">
+        <h2>Portfolio</h2>
+        <div class="slider">
+          <div class="slide" id="slide1">
+            <h3>Project 1</h3>
+            <img src="project1.jpg" alt="Project 1">
+            <div class="slide-gallery">
+              <img src="project1-gallery-1.jpg" alt="Project 1 Gallery Image 1">
+              <img src="project1-gallery-2.jpg" alt="Project 1 Gallery Image 2">
+            </div>
+          </div>
+          <div class="slide" id="slide2">
+            <h3>Project 2</h3>
+            <img src="project2.jpg" alt="Project 2">
+            <div class="slide-gallery">
+              <img src="project2-gallery-1.jpg" alt="Project 2 Gallery Image 1">
+              <img src="project2-gallery-2.jpg" alt="Project 2 Gallery Image 2">
+            </div>
+          </div>
+          <div class="slide" id="slide3">
+            <h3>Project 3</h3>
+            <img src="project3.jpg" alt="Project 3">
+            <div class="slide-gallery">
+              <img src="project3-gallery-1.jpg" alt="Project 3 Gallery Image 1">
+              <img src="project3-gallery-2.jpg" alt="Project 3 Gallery Image 2">
+            </div>
+          </div>
+        </div>
+        <div class="gallery-overlay">
+          <div class="gallery">
+            <button class="close-gallery">X</button>
+            <img src="" alt="Gallery Image">
+          </div>
+        </div>
+      </section>
+</body>
+</html>

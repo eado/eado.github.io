@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script
+            type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+        ></script>
+        <script
+            nomodule
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+        ></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap"
+            rel="stylesheet"
+        />
+        <title>Omar Elamri</title>
+
+        <style>
+            * {
+                font-family: "Montserrat", -apple-system, BlinkMacSystemFont,
+                    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+                    "Helvetica Neue", sans-serif;
+            }
+            body {
+                background-color: white;
+                margin: 0px;
+                height: 100%;
+                overflow: hidden;
+            }
+
+            svg {
+                pointer-events: none;
+            }
+
+            #content {
+                z-index: 1;
+                position: absolute;
+                width: 50%;
+                height: 100%;
+                padding-left: 5%;
+                /* text-align: center; */
+                animation: opacity 600ms ease-in-out;
+            }
+
+            #links h1 {
+                color: white;
+                /* background-color: white; */
+                border-radius: 10px;
+                padding: 20px;
+                position: fixed;
+                text-align: center;
+                width: 400px;
+                font-size: 2.5em;
+                transition: all 300ms ease;
+                background: linear-gradient(
+                        to right,
+                        rgba(100, 200, 200, 0),
+                        rgba(100, 200, 200, 0)
+                    ),
+                    linear-gradient(to right, white, white, white);
+                background-size: 50% 0.1em, 0 0.2em;
+                background-position: 80% 50%, 53% 81%;
+                background-repeat: no-repeat;
+                border: 0;
+                margin: 0;
+                font-weight: 400;
+
+                right: -200px;
+                top: -1.35em;
+            }
+
+            #links h1:hover {
+                font-size: 2.7em;
+                letter-spacing: 2px;
+                background-size: 80% 0.2em, 60% 0.2em;
+            }
+
+            #links h1 ion-icon {
+                vertical-align: middle;
+                font-size: 1em;
+            }
+
+            #about {
+                transform: rotate(-15deg) translateX(-20vw);
+                animation: rotateabout 1s ease-in-out;
+            }
+
+            #projects {
+                transform: rotate(-45deg) translateX(-20vw);
+                animation: rotateprojects 1s ease-in-out;
+            }
+
+            #education {
+                transform: rotate(-75deg) translateX(-20vw);
+                animation: rotateeducation 1s ease-in-out;
+            }
+
+            #pfp {
+                height: 15rem;
+                width: 15rem;
+                border-radius: 7rem;
+                object-fit: cover;
+                margin-top: 30%;
+            }
+
+            #title {
+                letter-spacing: 5px;
+                color: #db3737;
+                font-size: 5em;
+                margin-top: 10px;
+            }
+
+            .concentric {
+                /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+                animation: initscale 1s ease-in-out;
+            }
+
+            /* Animations */
+            @keyframes initscale {
+                0% {
+                    r: 0;
+                }
+                100% {
+                    r: 20;
+                }
+            }
+
+            @keyframes opacity {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 1;
+                }
+            }
+
+            @keyframes rotateabout {
+                0% {
+                    transform: rotate(90deg) translateX(-20vw);
+                }
+                100% {
+                    transform: rotate(-15deg) translateX(-20vw);
+                }
+            }
+
+            @keyframes rotateprojects {
+                0% {
+                    transform: rotate(60deg) translateX(-20vw);
+                }
+                100% {
+                    transform: rotate(-45deg) translateX(-20vw);
+                }
+            }
+
+            @keyframes rotateeducation {
+                0% {
+                    transform: rotate(30deg) translateX(-20vw);
+                }
+                100% {
+                    transform: rotate(-75deg) translateX(-20vw);
+                }
+            }
+        </style>
+
+        <script>
+            let ticks = 0;
+            let delta = 0;
+            let touchpos = 0;
+
+            window.onload = function test() {
+                document.getElementById("circlemiddle").addEventListener(
+                    "mousewheel",
+                    (ev) => {
+                        if (ev.type == "touchmove") {
+                            ev.deltaY = ev.changed;
+                        }
+                        ev.preventDefault();
+                        if (ticks >= 5) {
+                            ticks = 0;
+                        } else {
+                            ticks++;
+                            return;
+                        }
+
+                        ev.deltaY /= 10;
+
+                        if (delta + ev.deltaY > 40) {
+                            delta = 40;
+                        } else if (delta + ev.deltaY < -40) {
+                            delta = -40;
+                        } else {
+                            delta += ev.deltaY;
+                        }
+                        const cont = document.getElementById("links");
+
+                        for (let i = 0; i < cont.children.length; i++) {
+                            let transform =
+                                cont.children.item(i).style.transform;
+                            transform = transform.split(" ");
+                            cont.children.item(i).style.transform =
+                                transform[0] +
+                                ` rotate(${delta}deg) translateX(-20vw)`;
+                        }
+                    },
+                    true
+                );
+            };
+        </script>
+    </head>
+    <body>
+        <div id="content">
+            <img id="pfp" src="pfp.jpg" />
+            <h1 id="title">Omar<br />Elamri</h1>
+        </div>
+        <div id="links">
+            <h1 id="about" style="transform: rotate(-15deg) translateX(-20vw)">
+                <ion-icon name="person-circle"></ion-icon>&nbsp;About
+            </h1>
+            <h1
+                id="projects"
+                style="transform: rotate(-45deg) translateX(-20vw)"
+            >
+                <ion-icon name="brush"></ion-icon>&nbsp;Projects
+            </h1>
+            <h1
+                id="education"
+                style="transform: rotate(-75deg) translateX(-20vw)"
+            >
+                <ion-icon name="library"></ion-icon>&nbsp;Education
+            </h1>
+        </div>
+        <div id="background">
+            <svg viewBox="0 0 10 10" width="100%" height="100%">
+                <circle
+                    id="circlemiddle"
+                    class="concentric"
+                    cx="10"
+                    cy="0"
+                    r="5"
+                    fill="#db3737"
+                />
+                <circle
+                    class="concentric"
+                    cx="10"
+                    cy="0"
+                    r="3"
+                    fill="#eb4949"
+                />
+                <circle
+                    class="concentric"
+                    cx="10"
+                    cy="0"
+                    r="1"
+                    fill="#f57a7a"
+                />
+            </svg>
+        </div>
+    </body>
+</html>
