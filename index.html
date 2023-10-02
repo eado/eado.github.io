@@ -56,7 +56,6 @@
                 /* display: flex; */
                 text-align: left;
                 /* width: 100vw; */
-                margin-bottom: 3rem;
             }
             .links {
                 text-align: center;
@@ -65,7 +64,7 @@
                 padding: 0; /* Remove default padding */
                 margin: 0; /* Remove default margin */
                 color: #1155cc;
-                align-items: center;
+                align-items: top;
                 display: flex;
             }
             .links li {
@@ -117,6 +116,24 @@
             ion-icon {
                 color: #1155cc;
             }
+
+            .links li {
+                max-width: 32px;
+                display: flex;
+                flex-flow: column nowrap;
+                align-items: center;
+            }
+
+            .links li span {
+                opacity: 0;
+                text-align: center;
+                transition: all 0.2s linear;
+                white-space: nowrap;
+            }
+
+            .links li:hover span {
+                opacity: 1;
+            }
         </style>
         <script>
             var current = 2;
@@ -161,26 +178,39 @@
                     <a href="https://github.com/eado"
                         ><ion-icon name="logo-github" size="large"></ion-icon
                     ></a>
+                    <span>GitHub</span>
                 </li>
                 <li>
                     <a href="https://linkedin.com/in/omarelamri"
                         ><ion-icon name="logo-linkedin" size="large"></ion-icon
                     ></a>
+                    <span>LinkedIn</span>
                 </li>
                 <li>
                     <a href="mailto:omar@omarelamri.me"
                         ><ion-icon name="ios-mail" size="large"></ion-icon
                     ></a>
+                    <span>Email</span>
                 </li>
                 <li>
                     <a href="Resume.pdf"
                         ><ion-icon name="ios-document" size="large"></ion-icon
                     ></a>
+                    <span>Résumé</span>
                 </li>
-                <li><a href="https://omarelamri.notion.site">Notes</a></li>
-                    <li><a disabled href="https://blog.omarelamri.me">Blog (WIP)</a></li>
+                <li>
+                    <a href="https://omarelamri.notion.site"
+                        ><ion-icon name="ios-book" size="large"></ion-icon
+                    ></a>
+                    <span>Notes</span>
+                </li>
+                <li>
+                    <a href="https://blog.omarelamri.me"
+                        ><ion-icon name="ios-chatbubbles" size="large"></ion-icon
+                    ></a>
+                    <span>Blog (coming soon)</span>
+                </li>
             </ul>
-            <br />
         </div>
         <h2>Hi there!</h2>
         <p>
