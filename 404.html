@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+    <script>
+        var urls = {
+            cs118: "https://omarelamri.notion.site/CS-118-Computer-Network-Fundamentals-744465fa57db4953aadfbcd05a2aa274?pvs=4",
+            blog: "https://blog.omarelamri.me",
+            resume: "assets/resume.pdf",
+            "resume.pdf": "assets/resume.pdf",
+            li: "https://linkedin.com/in/omarelamri",
+            gh: "https://github.com/eado",
+        };
+        var path = location.pathname.substr(1).toLowerCase();
+        if (path in urls) {
+            location.href = urls[path];
+        }
+    </script>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>404</title>
+        <title>Oh no!</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -17,27 +31,25 @@
                     Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
             }
             body {
-                margin-top: 25%;
-                margin-left: 10%;
+                margin-top: 25vh;
+                margin-left: 10vw;
+            }
+            button {
+                color: white;
+                background-color: #1155cc;
+                border: none;
+                padding: 10px;
+                border-radius: 10px;
+            }
+            a {
+                text-decoration: none;
+                color: white;
             }
         </style>
     </head>
-    <script>
-        var urls = {
-            'cs118': "https://omarelamri.notion.site/CS-118-Computer-Network-Fundamentals-744465fa57db4953aadfbcd05a2aa274?pvs=4",
-            'blog': "https://blog.omarelamri.me",
-            'resume': "assets/resume.pdf",
-            'resume.pdf': "assets/resume.pdf",
-	    'li': "https://linkedin.com/in/omarelamri",
-	    'gh': "https://github.com/eado",
-        }
-        var path = location.pathname.substr(1).toLowerCase()
-        if (path in urls) {
-            location.href = urls[path]
-        }
-    </script>
     <body>
-        <h1>404: Not Found</h1>
-        <p>Hmm... we can't seem to find that link.</p>
+        <h1>There's nothing to see here!</h1>
+        <p>Hmm...we can't seem to find that link.</p>
+        <button><a href="/">Head back to safety</a></button>
     </body>
 </html>
