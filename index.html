@@ -75,12 +75,12 @@ script: /assets/js/index.js
         {% assign idx = forloop.index | modulo: 2 %}
         <div class='hoverbox {% if idx == 0  %} right {% else %} left {% endif %}'>
             {% if event.cover %}
-            <img class="cover" src="{{ event.cover | relative_url }}" />
+            <img loading="lazy" class="cover" src="{{ event.cover | relative_url }}" />
             {% else %}
             <div class="cover sm"></div>
             {% endif %}
             {% if event.icon %}
-            <img class="icon" src="{{ event.icon | relative_url }}" />
+            <img loading="lazy" class="icon" src="{{ event.icon | relative_url }}" />
             {% endif %}
             <div class="content">
                 <h1>{{ event.title }}</h1>
@@ -113,7 +113,7 @@ script: /assets/js/index.js
             <div class="slider">
                 <div class="slider-content">
                     {% for c in e.covers %}
-                    <img {% if forloop.index !=1 %} class="contain" {% endif %} src="{{ c | relative_url }}" />
+                    <img loading="lazy" {% if forloop.index !=1 %} class="contain" {% endif %} src="{{ c | relative_url }}" />
                     {% endfor %}
                     {% for em in e.embeds %}
                     <iframe frameborder="0" src="{{ em }}"></iframe>

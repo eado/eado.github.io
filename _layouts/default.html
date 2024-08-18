@@ -14,12 +14,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap"
         rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
     <link href="https://www.nerdfonts.com/assets/css/webfont.css" rel="stylesheet" />
     <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
-
+    {% if page.script %}
+    <script src='{{ page.script | relative_url }}'></script>{% endif %}
+    <script src='{{ "/assets/js/main.js" | relative_url }}'></script>
 
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
 </head>
@@ -41,10 +42,6 @@
         <section class="first"></section>
         {{ content }}
     </div>
-
-    {% if page.script %}
-    <script src='{{ page.script | relative_url }}'></script>{% endif %}
-    <script src='{{ "/assets/js/main.js" | relative_url }}'></script>
 </body>
 
 </html>
