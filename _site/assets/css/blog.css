@@ -1,0 +1,21 @@
+body > .content { width: 50%; margin-left: 25vw; }
+@media (max-width: 820px) { body > .content { width: 90%; margin-left: 5vw; } }
+
+section .links { display: none; position: relative; margin-top: 2vh; margin-bottom: 1vh; gap: 0.75rem; z-index: 0; }
+section .links li span { position: relative; top: 0; }
+
+@media (max-width: 640px) { section .links { display: inline-flex; }
+  header .links { display: none; } }
+section.first { padding-bottom: 18vh; }
+
+.post { padding-bottom: 3rem; }
+.post span { color: var(--alt); }
+.post h1, .post h3 { color: var(--acc); margin: 0; }
+.post.header { padding-bottom: 1rem; }
+
+.pagination { font-size: 1.25rem; }
+.pagination a { text-decoration: none; }
+
+img { max-width: 100%; vertical-align: middle; border: 1px solid var(--alt); }
+
+.end { height: 30vh; }

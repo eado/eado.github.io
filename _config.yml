@@ -1,0 +1,11 @@
+url: "https://omarelamri.me" 
+baseurl: ""
+title: "Omar Elamri"
+description: I'm an aspiring, young software developer offering 9 years of experience engineering software for both enterprise and educational organizations. I have a deep background in iOS and web application development—an innovator with deep knowledge in latest industry trends and advancements.
+
+collections:
+  - events
+  - experiences
+
+paginate: 5
+paginate_path: "/blog/:num/"

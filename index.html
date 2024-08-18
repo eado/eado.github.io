@@ -1,644 +1,139 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta
-            name="viewport"
-            content="width=device-winodedth, initial-scale=1.0"
-        />
-        <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap"
-            rel="stylesheet"
-        />
-        <title>Omar Elamri</title>
-        <style>
-            * {
-                font-family: "Readex Pro", -apple-system, BlinkMacSystemFont,
-                    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
-                    "Helvetica Neue", sans-serif;
-            }
-            .gray {
-                color: gray;
-            }
-            body {
-                padding-left: 30%;
-                padding-right: 30%;
-            }
-            @media (max-width: 500px) {
-                body {
-                    padding-left: 10%;
-                    padding-right: 10%;
-                }
-            }
-            html {
-                background-color: white;
-                color: black;
-            }
-            a {
-                color: #1155cc;
-            }
-            .name {
-                font-size: 3em;
-                margin-bottom: 0.5rem;
-            }
-            .id {
-                height: 12rem;
-                width: 12rem;
-                border-radius: 7rem;
-                object-fit: cover;
-                margin-top: 20px;
-            }
-            .header {
-                /* display: flex; */
-                text-align: left;
-                /* width: 100vw; */
-            }
-            .links {
-                text-align: center;
-                display: inline-block;
-                list-style: none; /* Remove the bullet points */
-                padding: 0; /* Remove default padding */
-                margin: 0; /* Remove default margin */
-                color: #1155cc;
-                align-items: top;
-                display: flex;
-            }
-            .links li {
-                margin-left: 5px;
-                margin-right: 5px; /* Add space between list items */
-                float: left;
-                color: #1155cc;
-            }
-            .projects {
-                list-style: none;
-                list-style-position: inside;
-                padding: 0;
-                padding-bottom: 25%;
-            }
-            .projects li {
-                list-style-position: inside;
-                margin-bottom: 60px;
-            }
-            .projects li * {
-                margin-bottom: 3px;
-            }
-            .projects li img {
-                width: 100px;
-                border-radius: 20px;
-            }
+---
+layout: default
+title: false
+style: /assets/css/index.css
+script: /assets/js/index.js
+---
 
-            .projects .left {
-                position: absolute;
-                left: 25%;
-                /* margin-top: 20vh; */
-            }
-            .projects .right {
-                position: absolute;
-                right: 25%;
-                /* margin-top: 20vh; */
-            }
-            @media (max-width: 500px) {
-                .projects .left {
-                    position: absolute;
-                    left: 3%;
-                    /* margin-top: 20vh; */
-                }
-                .projects .right {
-                    position: absolute;
-                    right: 3%;
-                    /* margin-top: 20vh; */
-                }
-            }
-            ion-icon {
-                color: #1155cc;
-            }
+<section class="hero">
+    <img id="heropfp" src='{{ "/assets/other/pfp.jpg" | relative_url }}' />
+    <h1 id="herotxt">Hi, I'm Omar!</h1>
+    {% include links.html %}
+    <p>{{ site.description }}</p>
+    <p>
+        Feel free to <a href="mailto:omar@omarelamri.me">email me</a> or send me a
+        message on <a href="https://linkedin.com/in/omarelamri">my LinkedIn</a>!
+        Always willing to chat!
+    </p>
+</section>
+<section class="blog">
+    <h1>Latest blog post</h1>
+    <div class="hoverbox">
+        <span>{{ site.posts[0].date | date: "%b %-d, %Y" }}&emsp;|&emsp;{% for cat in site.posts[0].categories %}{{
+            cat }}&emsp;{% endfor %}</span>
+        <h3>{{ site.posts[0].title }}</h3>
+        <p>{{ site.posts[0].excerpt }}</p>
+        <a href="{{ site.posts[0].url | relative_url }}">Read
+            more...</a>
+    </div>
+    <a href='{{ "/blog" | relative_url }}'><button>View more posts</button></a>
+</section>
+<section class="tech">
+    <div>
+        <p id="techscroll">
+            <i class="nf nf-dev-rust"></i>
+            <i class="nf nf-seti-javascript"></i>
+            <i class="nf nf-seti-typescript"></i>
+            <i class="nf nf-dev-swift"></i>
+            <i class="nf nf-md-language_python"></i>
+            <i class="nf nf-dev-haskell"></i>
+            <i class="nf nf-seti-ocaml"></i>
+            <i class="nf nf-custom-c"></i>
+            <i class="nf nf-custom-cpp"></i>
+            <i class="nf nf-seti-c_sharp"></i>
+            <i class="nf nf-dev-java"></i>
+            <i class="nf nf-dev-react"></i>
+            <i class="nf nf-md-tailwind"></i>
+            <i class="nf nf-seti-svelte"></i>
+            <i class="nf nf-dev-mongodb"></i>
+            <i class="nf nf-cod-azure"></i>
+            <i class="nf nf-md-google_cloud"></i>
+            <i class="nf nf-fa-node_js"></i>
+            <i class="nf nf-md-docker"></i>
+            <i class="nf nf-md-kubernetes"></i>
+            <i class="nf nf-cod-terminal_linux"></i>
+            <i class="nf nf-custom-neovim"></i>
+        </p>
+    </div>
+    <h1>Technologies I use</h1>
+</section>
+<section class="education">
+    <ul class="selector">
+        <li class="work" onclick="filter('work')">
+            <ion-icon name="briefcase"></ion-icon>Work
+        </li>
+        <li class="projects" onclick="filter('projects')">
+            <ion-icon name="brush"></ion-icon>Projects
+        </li>
+        <li class="edu" onclick="filter('edu')">
+            <ion-icon name="school"></ion-icon>Education
+        </li>
+    </ul>
 
-            .links li {
-                max-width: 32px;
-                display: flex;
-                flex-flow: column nowrap;
-                align-items: center;
-            }
-
-            .links li span {
-                opacity: 0;
-                text-align: center;
-                transition: all 0.2s linear;
-                white-space: nowrap;
-            }
-
-            .links li:hover span {
-                opacity: 1;
-            }
-        </style>
-        <script>
-            var current = 2;
-
-            function right() {
-                console.log(current);
-                var nodes = document.getElementById("projects").children;
-                if (current < nodes.length - 1) {
-                    current += 1;
-                    update();
-                }
-            }
-
-            function left() {
-                console.log(current);
-                if (current > 2) {
-                    current -= 1;
-                    update();
-                }
-            }
-
-            function update() {
-                var nodes = document.getElementById("projects").children;
-                for (var i = 2; i < nodes.length; i++) {
-                    if (i != current) {
-                        nodes[i].style.display = "none";
-                    } else {
-                        nodes[i].style.display = "";
-                    }
-                }
-                document.getElementById("number").innerText =
-                    current - 1 + "/" + (nodes.length - 2);
-            }
-        </script>
-    </head>
-    <body onload="update()">
-        <div class="header">
-            <img class="id" src="assets/pfp.jpg" />
-            <h1 class="name">Omar Elamri</h1>
-            <ul class="links">
-                <li>
-                    <a href="https://github.com/eado"
-                        ><ion-icon name="logo-github" size="large"></ion-icon
-                    ></a>
-                    <span>GitHub</span>
-                </li>
-                <li>
-                    <a href="https://linkedin.com/in/omarelamri"
-                        ><ion-icon name="logo-linkedin" size="large"></ion-icon
-                    ></a>
-                    <span>LinkedIn</span>
-                </li>
-                <li>
-                    <a href="mailto:omar@omarelamri.me"
-                        ><ion-icon name="ios-mail" size="large"></ion-icon
-                    ></a>
-                    <span>Email</span>
-                </li>
-                <li>
-                    <a href="assets/resume.pdf"
-                        ><ion-icon name="ios-document" size="large"></ion-icon
-                    ></a>
-                    <span>Résumé</span>
-                </li>
-                <li>
-                    <a href="https://omarelamri.notion.site"
-                        ><ion-icon name="ios-book" size="large"></ion-icon
-                    ></a>
-                    <span>Notes</span>
-                </li>
-                <li>
-                    <a href="https://blog.omarelamri.me"
-                        ><ion-icon
-                            name="ios-chatbubbles"
-                            size="large"
-                        ></ion-icon
-                    ></a>
-                    <span>Blog</span>
-                </li>
-            </ul>
+    {% for event in site.events reversed %}
+    <a class="{{ event.type }}" href="#{{ event.experience }}">
+        {% assign idx = forloop.index | modulo: 2 %}
+        <div class='hoverbox {% if idx == 0  %} right {% else %} left {% endif %}'>
+            {% if event.cover %}
+            <img class="cover" src="{{ event.cover | relative_url }}" />
+            {% else %}
+            <div class="cover sm"></div>
+            {% endif %}
+            {% if event.icon %}
+            <img class="icon" src="{{ event.icon | relative_url }}" />
+            {% endif %}
+            <div class="content">
+                <h1>{{ event.title }}</h1>
+                <span>{{ event.subtitle }} </span>
+            </div>
+            <hr>
+            <span>{{ event.marker }}</span>
+            {{ event.output }}
         </div>
-        <h2>Hi there!</h2>
-        <p>
-            I'm Omar Elamri, an aspiring, young software developer offering 9
-            years of experience engineering software for both enterprise and
-            educational organizations. I have a deep background in iOS and web
-            application development&mdash;an innovator with deep knowledge in
-            latest industry trends and advancements.
-        </p>
-        <p>
-            Feel free to <a href="mailto:omar@omarelamri.me">email me</a> or
-            send me a message on
-            <a href="https://linkedin.com/in/omarelamri">my LinkedIn</a>! Always
-            willing to chat!
-        </p>
-        <br />
-        <h2>What am I up to?</h2>
-        I'm currently:
-        <ul>
-            <li>
-                a second-year undergraduate computer science student at
-                <a href="https://www.cs.ucla.edu"><b>UCLA</b></a> who thought
-                graduating this school year would be a good idea
-            </li>
-            <br />
-            <li>
-                a learning assistant for
-                <b><a href="cs118">CS 118</a></b> (Computer Network
-                Fundamentals) under Professor
-                <b><a href="https://web.cs.ucla.edu/~lixia/">Lixia Zhang</a></b>
-            </li>
-            <br />
-            <li>
-                a grader for CS M146 (Introduction to Machine Learning) under
-                Professor
-                <b
-                    ><a href="https://www.licos.ee.ucla.edu"
-                        >Suhas Diggavi</a
-                    ></b
-                >
-            </li>
-            <br />
-            <li>
-                a co-founder of
-                <b><a href="https://withviolet.co">Violet</a></b
-                >—a platform that seeks to bring local workers to local
-                businesses.
-            </li>
-            <br />
-            <li>
-                a research assistant at
-                <a href="http://graemeblair.com/"><b>The World Bank</b></a
-                >—attempting to sort through thousands of research articles and
-                automating the extraction of key insights using novel AI/ML
-                techniques.
-            </li>
-            <br />
-            <li>suffering through the job application process.</li>
-        </ul>
-        <br />
-        <h2>Projects (<span id="number">X/X</span>)</h2>
-        <br />
-        <ul id="projects" class="projects">
-            <ion-icon
-                class="left"
-                name="ios-arrow-dropleft-circle"
-                size="large"
-                onclick="left()"
-            ></ion-icon>
-            <ion-icon
-                class="right"
-                name="ios-arrow-dropright-circle"
-                size="large"
-                onclick="right()"
-            ></ion-icon>
-            <li>
-                <img src="assets/violet.png" />
-                <h3>Violet</h3>
-                <i
-                    >We seek to create a service catering to small businesses
-                    and non-professional workers that streamlines the hiring
-                    process. On the job-seeking side, our new gesture-based UX
-                    delivers an elegant and familiar experience that is tailored
-                    towards a younger demographic in the job market. On the
-                    employer-side, we offer an integrated model that allows them
-                    to fill staffing availabilities. Small businesses typically
-                    have a less advanced online profile; we take their
-                    registered profile and automatically generate them a
-                    website, configure their SEO, and provide other hosting
-                    services.</i
-                >
-                <p>
-                    Worked on with: Arish Antia,
-                    <a href="https://www.linkedin.com/in/arya-gharib/"
-                        >Arya Gharib</a
-                    >
-                    and
-                    <a href="https://www.linkedin.com/in/zhaomeng-chen/"
-                        >Zhaomeng Chen</a
-                    >
-                </p>
-                <p>
-                    Key technologies used: SvelteKit, Cloudflare (Pages,
-                    Workers, D1, R2), Drizzle, Flowbite
-                </p>
-                <ul>
-                    <li>
-                        <a href="https://withviolet.co"
-                            ><b>Website</b> (major work in progress)</a
-                        >
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <img src="assets/rabbits/rabbits.png" />
-                <h3>Training Rabbits with Reinforcement Learning</h3>
-                <i
-                    >We used reinforcement learning algorithms to train models
-                    that play a simple 2D grid game. We achieved a high win rate
-                    of 87% using the deep Q-network algorithm, a convolutional
-                    neural network, and dense rewards that encourage beneficial
-                    behaviors while penalizing risky actions. We found that
-                    environments with highly random rewards are challenging for
-                    the methods that we tried and a well-designed reward
-                    function is essential for good performance.</i
-                >
-                <p>
-                    Worked on with:
-                    <a href="https://www.alexyzhang.dev/">Alexander Zhang</a>,
-                    Krishi Sabarwal and
-                    <a href="https://www.linkedin.com/in/zhaomeng-chen/"
-                        >Zhaomeng Chen</a
-                    >
-                </p>
-                <p>
-                    Key technologies used: OpenAI Gym, PyTorch, Stable
-                    Baselines, DQN
-                </p>
-                <ul>
-                    <li>
-                        <a href="assets/rabbits/rabbits.pdf"><b>Paper</b></a>
-                    </li>
-                    <li>
-                        <a href="assets/rabbits/900K.mp4"><b>Video</b></a>
-                    </li>
-                    <li>
-                        <b>
-                            <a href="assets/rabbits/rabbits.ipynb"
-                                >Source Code</a
-                            >
-                        </b>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <img src="assets/binaries/binaries.png" />
-                <h3>Formal Verification of Compiled Binaries</h3>
-                <i
-                    >Formal verification provides a high level of assurance but
-                    comes with many drawbacks such as tooling, complex
-                    semantics, and lots of manual work. We perform formal
-                    verification on compiled binaries instead—using angr and the
-                    z3 SMT solver. Our verifier aims to detect vulnerabilities,
-                    verify correctness, support multiple architectures, and
-                    provide cross-language support.</i
-                >
-                <p>
-                    Worked on with: <a href="https://aplet.me">Jason An</a> and
-                    <a href="https://www.alexyzhang.dev/">Alexander Zhang</a>
-                </p>
-                <p>Key technologies used: angr, z3, Python</p>
-                <ul>
-                    <li>
-                        <a href="assets/binaries/binaries.pdf"><b>Paper</b></a>
-                    </li>
-                    <li>
-                        <b>
-                            <a href="https://github.com/bkrl/ece117"
-                                >Source Code</a
-                            >
-                        </b>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <img src="assets/opentalk.png" />
-                <h3>OpenTalk</h3>
-                <i
-                    >At OpenTalk, our mission is to empower those who struggle
-                    in social situations through our AI-powered chatbot, which
-                    uses AR to simulate and practice various stressful social
-                    scenarios.
-                </i>
-                <p>
-                    Worked on with:
-                    <a href="https://www.linkedin.com/in/zhaomeng-chen/"
-                        >Zhaomeng Chen</a
-                    >
-                    and
-                    <a href="https://www.linkedin.com/in/arya-gharib/"
-                        >Arya Gharib</a
-                    >
-                </p>
-                <p>
-                    Key technologies used: Google Cloud Voice AI, OpenAI Davinci
-                    GPT-3, ARKit
-                </p>
-                <ul>
-                    <li>
-                        <a href="https://devpost.com/software/opentalk"
-                            ><b>Technical Writeup</b></a
-                        >
-                    </li>
-                    <li>
-                        <b
-                            ><a href="https://github.com/Open-Talk/OpenTalk"
-                                >Source Code</a
-                            ></b
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="https://www.youtube.com/watch?v=1xcZ5Ux7QAg&embeds_euri=https%3A%2F%2Fdevpost.com%2F&source_ve_path=MjM4NTE&feature=emb_title"
-                            >Video Demo</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="https://apps.apple.com/app/opentalk-speak-with-ease/id1672840469"
-                            >iOS App Store</a
-                        >
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <img src="assets/foodscoop/foodscoop.png" />
-                <h3>FoodScoop</h3>
-                <i
-                    >Our project aims to strengthen the UCLA dining experience
-                    by providing a better interface for dining menus,
-                    nutritional information, and meal planning.</i
-                >
-                <p>
-                    Worked on with:
-                    <a href="https://www.linkedin.com/in/surya-subbarao"
-                        >Surya Subbarao</a
-                    >, Weiqi Yu, Aminah Khan and
-                    <a href="https://www.linkedin.com/in/arya-gharib/"
-                        >Arya Gharib</a
-                    >
-                </p>
-                <p>
-                    Key technologies used: React Native, Expo, MongoDB,
-                    TypeScript Transformers
-                </p>
-                <ul>
-                    <li>
-                        <a href="assets/foodscoop/proposal.pdf"
-                            ><b>Proposal/Technical Writeup</b></a
-                        >
-                    </li>
-                    <li>
-                        <b
-                            >Source Code
-                            <a
-                                href="https://github.com/FoodScoopApp/FoodScoopAppFrontend"
-                                >(frontend)</a
-                            >
-                            <a
-                                href="https://github.com/FoodScoopApp/FoodScoopAppBackend"
-                                >(backend)</a
-                            ></b
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="https://apps.apple.com/app/foodscoop/id6446262954"
-                            >iOS App Store</a
-                        >
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <img src="assets/digitr/digitr.png" />
-                <h3>Digitr</h3>
-                <i
-                    >Digitr is a digital student hallway pass app that provides
-                    a smart, simple, scalable and convenient way of managing
-                    student passes.</i
-                >
-                <br /><br />
-                <ul>
-                    <li>
-                        <a href="assets/digitr/digitrwriteup.pdf"
-                            ><b>Technical Writeup</b></a
-                        >
-                    </li>
-                    <li>
-                        <b
-                            >Source Code
-                            <a href="https://github.com/eado/Digitr"
-                                >(frontend)</a
-                            >
-                            <a href="https://github.com/eado/DigitrBackend"
-                                >(backend)</a
-                            ></b
-                        >
-                    </li>
-                    <li>
-                        <a href="https://app.digitrapp.com"><b>Live App</b></a>
-                    </li>
-                    <li>
-                        <a href="https://www.mpassapp.com/about">Website</a>
-                    </li>
-                    <li>
-                        <a href="https://www.mpassapp.com/video">Video Demo</a>
-                    </li>
-                    <li>
-                        <a
-                            href="https://apps.apple.com/us/app/digitr/id1434334094"
-                            >iOS App Store</a
-                        >
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <img src="assets/fullcircle.png" />
-                <h3>Full Circle</h3>
-                <i
-                    >An app that connects in-need students to specialized
-                    mentors. Used at Minnetonka Public Schools for their at risk
-                    mentor-mentee program.</i
-                >
-                <p>Key technologies used: React, Google Cloud Run, MongoDB</p>
-                <ul>
-                    <li>
-                        <a href="https://myfullcircle.app"><b>App Link</b></a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <h3>Horwitz</h3>
-                <i
-                    >An inventory tracker that syncs on-site workers' needs with
-                    the warehouse personnel.</i
-                >
-                <p>
-                    Key technologies used: React, Google Cloud Platform,
-                    MongoDB, PM2, Let's Encrypt
-                </p>
-                <ul>
-                    <li>
-                        Unfortunately, an app link is not available since this
-                        is a private application.
-                    </li>
-                    <li>
-                        <a href="assets/horwitz/home.png">Home Screenshot</a>
-                    </li>
-                    <li><a href="assets/horwitz/order.png">Order</a></li>
-                    <li><a href="assets/horwitz/products.png">Products</a></li>
-                    <li>
-                        <a href="assets/horwitz/fullfill.png">Fullfillment</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <h3>Sisyphus for the Rest of Us Web UI</h3>
-                <i
-                    >An online program that converts regular images to vector
-                    paths. Primarily used to export to
-                    <a href="https://sisyphus-industries.com/"
-                        >Sisyphus sand tables</a
-                    >.</i
-                >
-                <p>
-                    Key technologies used: Ionic Framework, Google Cloud
-                    Platform, Java JRE
-                </p>
-                <ul>
-                    <li>
-                        <a href="https://sftrou.omarelamri.me"
-                            ><b>App Link</b></a
-                        >
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <h3>Research Project</h3>
-                <i
-                    >Easing the facilitation and creation of scalable global
-                    internet based applications</i
-                >
-                <br /><br />
-                <ul>
-                    <li>
-                        <a href="assets/researcharticle.pdf"
-                            >Research Article</a
-                        >
-                    </li>
-                    <li>
-                        <a href="https://youtu.be/vQlizTr3UGQ"
-                            >Research Overview Video</a
-                        >
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <img src="assets/cupcake/cupcake.png" />
-                <h3>Cupcake</h3>
-                <i>Cupcake: A simplistic game</i>
-                <br /><br />
-                <ul>
-                    <li>
-                        <a href="https://github.com/eado/Cupcake-WWDC"
-                            >Source Code</a
-                        >
-                    </li>
-                    <li>
-                        <a href="https://omarelamri.me/cupcake-guide/">Guide</a>
-                    </li>
-                    <li>
-                        <a href="assets/cupcake/tutorial.mov">Video Demo</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </body>
-</html>
+    </a>
+    {% endfor %}
+
+    {% for e in site.experiences %}
+    <div id="{{ e.link }}" class="modal">
+        <a href="#f" class="overlay"></a>
+        <div class="mcontent">
+            <a class="close" href="#f">&times;</a>
+            {% assign clen = e.covers | size %}
+            {% assign elen = e.embeds | size %}
+            {% if clen > 1 or elen > 1 or clen > 0 and elen > 0 %}
+            <div class="leftarrow" onclick="sliderLeft()">
+                &lt;
+            </div>
+            <div class="rightarrow" onclick="sliderRight()">
+                &gt;
+            </div>
+            {% endif %}
+
+            {% if clen != 0 or elen != 0 %}
+            <div class="slider">
+                <div class="slider-content">
+                    {% for c in e.covers %}
+                    <img {% if forloop.index !=1 %} class="contain" {% endif %} src="{{ c | relative_url }}" />
+                    {% endfor %}
+                    {% for em in e.embeds %}
+                    <iframe frameborder="0" src="{{ em }}"></iframe>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            {% if e.icon %}
+            <img class="icon" src="{{ e.icon | relative_url }}" />
+            {% else %}
+            <div class="icon"></div>
+            {% endif %}
+            <div class="head">
+                <h1>{{ e.title }}</h1>
+                <span>{{ e.subtitle }}</span>
+            </div>
+            <div class="cont">
+                {{ e.output }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</section>

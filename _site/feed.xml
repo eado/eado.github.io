@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+
+    <channel>
+        <title>Omar Elamri</title>
+        <link>http://localhost:4000</link>
+        <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+        <description>I'm an aspiring, young software developer offering 9 years of experience engineering software for both enterprise and educational organizations. I have a deep background in iOS and web application development—an innovator with deep knowledge in latest industry trends and advancements.</description>
+        <lastBuildDate>Sun, 18 Aug 2024 14:28:59 -0500</lastBuildDate>
+        
+        <item>
+            <title>picoCTF: Some Assembly Required 2</title>
+            <link>
+                http://localhost:4000/ctf/2024/03/26/picoCTF-some-assembly-required-2.html
+            </link>
+            <description>
+                &lt;p&gt;I wrote this CTF writeup a while ago and put it on my main webpage. It
+works better on my blog instead, so I decided to post it here.&lt;/p&gt;
+
+&lt;p&gt;This challenge is a cross between Web and Binary Exploitation. It deals with obfuscated JavaScript code that interacts with WebAssembly.&lt;/p&gt;
+
+&lt;p&gt;We are presented with a fairly simple website. It has a single textbox and a ...
+            </description>
+            <pubDate>Tue, 26 Mar 2024 06:00:00 -0500</pubDate>
+            <guid>
+                http://localhost:4000/ctf/2024/03/26/picoCTF-some-assembly-required-2.html
+            </guid>
+        </item>
+        
+        <item>
+            <title>Why a blog?</title>
+            <link>
+                http://localhost:4000/general/2024/03/24/why-a-blog.html
+            </link>
+            <description>
+                &lt;p&gt;Most cracked computer science majors that I know have blogs. I want to be a
+cracked computer science major. Logical conclusion?&lt;/p&gt;
+
+&lt;p&gt;While Bayes is rolling in his grave, in all seriousness, I decided
+that a blog would be the best way to keep myself accountable. As such, I have
+a couple goals for what this blog should be:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;a way to track my...
+            </description>
+            <pubDate>Sun, 24 Mar 2024 17:38:00 -0500</pubDate>
+            <guid>
+                http://localhost:4000/general/2024/03/24/why-a-blog.html
+            </guid>
+        </item>
+        
+    </channel>
+</rss>

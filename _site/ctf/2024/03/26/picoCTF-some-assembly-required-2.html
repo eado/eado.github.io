@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href='/assets/css/main.css'>
+    
+    <link rel="stylesheet" href='/assets/css/blog.css'>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link href="https://www.nerdfonts.com/assets/css/webfont.css" rel="stylesheet" />
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+    
+    <script src='/assets/js/main.js'></script>
+
+    <title>picoCTF: Some Assembly Required 2 | Omar Elamri</title>
+</head>
+
+<body>
+    <div class="bg"></div>
+    <header>
+        <div class="content">
+            <a href='/'>
+                <img id="headerpfp" src='/assets/other/pfp.jpg' />
+            </a>
+            <a href='/'>
+                <h1 id="headertxt">Omar Elamri</h1>
+            </a>
+            <ul class="links">
+    <li>
+        <a href="https://github.com/eado"><ion-icon name="logo-github" size="large"></ion-icon><noscript>GH</noscript></a>
+        <span>GitHub</span>
+    </li>
+    <li>
+        <a href="https://linkedin.com/in/omarelamri"><ion-icon name="logo-linkedin" size="large"></ion-icon><noscript>LI</noscript></a>
+        <span>LinkedIn</span>
+    </li>
+    <li>
+        <a href="mailto:omar@eado.me"><ion-icon name="ios-mail" size="large"></ion-icon><noscript>M</noscript></a>
+        <span>Email</span>
+    </li>
+    <li>
+        <a href='/assets/other/resume.pdf'><ion-icon name="ios-document" size="large"></ion-icon><noscript>R</noscript></a>
+        <span>Résumé</span>
+    </li>
+    <li>
+        <a href="https://omarelamri.notion.site"><ion-icon name="ios-book" size="large"></ion-icon><noscript>N</noscript></a>
+        <span>Notes</span>
+    </li>
+    <li>
+        <a href='/blog'><ion-icon name="ios-chatbubbles" size="large"></ion-icon><noscript>B</noscript></a>
+        <span>Blog</span>
+    </li>
+    <li class="darkbutton">
+        <noscript>
+            <style>
+                .darkbutton {
+                    display: none;
+                }
+            </style>
+        </noscript>
+        <a onclick="setMode(!darkMode)"><ion-icon name="sunny" size="large"></ion-icon></a>
+        <span></span>
+    </li>
+</ul>
+
+        </div>
+    </header>
+    <div class="content">
+        <section class="first"></section>
+        <section>
+<ul class="links">
+    <li>
+        <a href="https://github.com/eado"><ion-icon name="logo-github" size="large"></ion-icon><noscript>GH</noscript></a>
+        <span>GitHub</span>
+    </li>
+    <li>
+        <a href="https://linkedin.com/in/omarelamri"><ion-icon name="logo-linkedin" size="large"></ion-icon><noscript>LI</noscript></a>
+        <span>LinkedIn</span>
+    </li>
+    <li>
+        <a href="mailto:omar@eado.me"><ion-icon name="ios-mail" size="large"></ion-icon><noscript>M</noscript></a>
+        <span>Email</span>
+    </li>
+    <li>
+        <a href='/assets/other/resume.pdf'><ion-icon name="ios-document" size="large"></ion-icon><noscript>R</noscript></a>
+        <span>Résumé</span>
+    </li>
+    <li>
+        <a href="https://omarelamri.notion.site"><ion-icon name="ios-book" size="large"></ion-icon><noscript>N</noscript></a>
+        <span>Notes</span>
+    </li>
+    <li>
+        <a href='/blog'><ion-icon name="ios-chatbubbles" size="large"></ion-icon><noscript>B</noscript></a>
+        <span>Blog</span>
+    </li>
+    <li class="darkbutton">
+        <noscript>
+            <style>
+                .darkbutton {
+                    display: none;
+                }
+            </style>
+        </noscript>
+        <a onclick="setMode(!darkMode)"><ion-icon name="sunny" size="large"></ion-icon></a>
+        <span></span>
+    </li>
+</ul>
+
+</section>
+
+<div class="post header">
+    <span>Mar 26, 2024&emsp;|&emsp;ctf&emsp;</span>
+    <h1>picoCTF: Some Assembly Required 2</h1>
+</div>
+
+<p>I wrote this CTF writeup a while ago and put it on my main webpage. It
+works better on my blog instead, so I decided to post it here.</p>
+
+<p>This challenge is a cross between Web and Binary Exploitation. It deals with obfuscated JavaScript code that interacts with WebAssembly.</p>
+
+<p>We are presented with a fairly simple website. It has a single textbox and a submit button where we can verify the correctness of our flag. Looking at the source code, clicking the submit button leads to a method called <code class="language-plaintext highlighter-rouge">onButtonPress()</code>.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"onButtonPress()"</span><span class="nt">&gt;</span>Submit<span class="nt">&lt;/button&gt;</span>
+</code></pre></div></div>
+
+<p>However, the attached JavaScript file that has <code class="language-plaintext highlighter-rouge">onButtonPress()</code> is obfuscated:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">onButtonPress</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">_0x50ea62</span> <span class="o">=</span> <span class="nx">_0x5c00</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">_0x5f4170</span> <span class="o">=</span> <span class="nb">document</span><span class="p">[</span><span class="nx">_0x50ea62</span><span class="p">(</span><span class="mh">0xd8</span><span class="p">)](</span><span class="nx">_0x50ea62</span><span class="p">(</span><span class="mh">0xda</span><span class="p">))[</span><span class="nx">_0x50ea62</span><span class="p">(</span><span class="mh">0xc5</span><span class="p">)];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">_0x19d3ca</span> <span class="o">=</span> <span class="mh">0x0</span><span class="p">;</span> <span class="nx">_0x19d3ca</span> <span class="o">&lt;</span> <span class="nx">_0x5f4170</span><span class="p">[</span><span class="dl">'</span><span class="s1">length</span><span class="dl">'</span><span class="p">];</span> <span class="nx">_0x19d3ca</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">exports</span><span class="p">[</span><span class="nx">_0x50ea62</span><span class="p">(</span><span class="mh">0xc4</span><span class="p">)](</span><span class="nx">_0x5f4170</span><span class="p">[</span><span class="nx">_0x50ea62</span><span class="p">(</span><span class="mh">0xd1</span><span class="p">)](</span><span class="nx">_0x19d3ca</span><span class="p">),</span> <span class="nx">_0x19d3ca</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">exports</span><span class="p">[</span><span class="dl">'</span><span class="s1">copy_char</span><span class="dl">'</span><span class="p">](</span><span class="mh">0x0</span><span class="p">,</span> <span class="nx">_0x5f4170</span><span class="p">[</span><span class="nx">_0x50ea62</span><span class="p">(</span><span class="mh">0xd7</span><span class="p">)]),</span>
+    <span class="nx">exports</span><span class="p">[</span><span class="nx">_0x50ea62</span><span class="p">(</span><span class="mh">0xca</span><span class="p">)]()</span> <span class="o">==</span> <span class="mh">0x1</span> <span class="p">?</span> <span class="nb">document</span><span class="p">[</span><span class="dl">'</span><span class="s1">getElementById</span><span class="dl">'</span><span class="p">](</span><span class="nx">_0x50ea62</span><span class="p">(</span><span class="mh">0xd3</span><span class="p">))[</span><span class="nx">_0x50ea62</span><span class="p">(</span><span class="mh">0xd0</span><span class="p">)]</span> <span class="o">=</span> <span class="nx">_0x50ea62</span><span class="p">(</span><span class="mh">0xce</span><span class="p">)</span> <span class="p">:</span> <span class="nb">document</span><span class="p">[</span><span class="nx">_0x50ea62</span><span class="p">(</span><span class="mh">0xd8</span><span class="p">)](</span><span class="nx">_0x50ea62</span><span class="p">(</span><span class="mh">0xd3</span><span class="p">))[</span><span class="dl">'</span><span class="s1">innerHTML</span><span class="dl">'</span><span class="p">]</span> <span class="o">=</span> <span class="nx">_0x50ea62</span><span class="p">(</span><span class="mh">0xd5</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>However, it’s evident that this code is iterating through each character in the textbox (reference to <code class="language-plaintext highlighter-rouge">getElementById</code> and <code class="language-plaintext highlighter-rouge">length</code>) and passing it into some function called <code class="language-plaintext highlighter-rouge">copy_char</code>.</p>
+
+<p>Looking at the WASM code, we are presented with the function <code class="language-plaintext highlighter-rouge">copy_char</code></p>
+
+<pre><code class="language-wasm">(func $copy_char (;3;) (export "copy_char") (param $var0 i32) (param $var1 i32)
+    (local $var2 i32)
+    (local $var3 i32)
+    (local $var4 i32)
+    (local $var5 i32)
+    (local $var6 i32)
+    (local $var7 i32)
+    (local $var8 i32)
+    (local $var9 i32)
+    (local $var10 i32)
+    global.get $global0
+    local.set $var2
+    i32.const 16
+    local.set $var3
+    local.get $var2
+    local.get $var3
+    i32.sub
+    local.set $var4
+    local.get $var4
+    local.get $var0
+    i32.store offset=12
+    local.get $var4
+    local.get $var1
+    i32.store offset=8
+    local.get $var4
+    i32.load offset=12
+    local.set $var5
+    block $label0
+      local.get $var5
+      i32.eqz
+      br_if $label0
+      local.get $var4
+      i32.load offset=12
+      local.set $var6
+      i32.const 8
+      local.set $var7
+      local.get $var6
+      local.get $var7
+      i32.xor
+      local.set $var8
+      local.get $var4
+      local.get $var8
+      i32.store offset=12
+    end $label0
+    local.get $var4
+    i32.load offset=12
+    local.set $var9
+    local.get $var4
+    i32.load offset=8
+    local.set $var10
+    local.get $var10
+    local.get $var9
+    i32.store8 offset=1072
+    return
+  )
+</code></pre>
+<p>and a random string variable:</p>
+
+<pre><code class="language-wasm">(data (i32.const 1024) "xakgK\5cNs&gt;n;jl90;9:mjn9m&lt;0n9::0::881&lt;00?&gt;u\00\00")
+</code></pre>
+
+<p>Going step-by-step in the <code class="language-plaintext highlighter-rouge">copy_char</code> function, we see that it takes the character in <code class="language-plaintext highlighter-rouge">$var0</code>, <code class="language-plaintext highlighter-rouge">XOR</code>’s it with <code class="language-plaintext highlighter-rouge">8</code>, and puts it in <code class="language-plaintext highlighter-rouge">$var1</code>:</p>
+
+<pre><code class="language-wasm">i32.const 8
+local.set $var7
+local.get $var6
+local.get $var7
+i32.xor
+</code></pre>
+
+<p><code class="language-plaintext highlighter-rouge">XOR</code> ing the string <code class="language-plaintext highlighter-rouge">"xakgK\5cNs&gt;n;jl90;9:mjn9m&lt;0n9::0::881&lt;00?&gt;u\00\00"</code> with <code class="language-plaintext highlighter-rouge">8</code> yields:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>picoC\rkF{6f3bd18312ebf1e48f12282200948876}\x08\x08
+</code></pre></div></div>
+
+<p>which is our flag!</p>
+
+
+
+<div class="end"></div>
+
+
+    </div>
+</body>
+
+</html>
