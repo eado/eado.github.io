@@ -25,7 +25,7 @@ var setMode = (mode) => {
     }
 }
 
-window.onload = () => {
+// window.onload = () => {
     if (window.matchMedia) {
         const query = window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -42,4 +42,4 @@ window.onload = () => {
     }
 
     load();
-}
+// }
