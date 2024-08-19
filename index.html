@@ -6,7 +6,7 @@ script: /assets/js/index.js
 ---
 
 <section class="hero">
-    <img id="heropfp" src='{{ "/assets/other/pfp.jpg" | relative_url }}' />
+    <img loading="lazy" id="heropfp" src='{{ "/assets/other/pfp.jpg" | relative_url }}' />
     <h1 id="herotxt">Hi, I'm Omar!</h1>
     {% include links.html %}
     <p>{{ site.description }}</p>
