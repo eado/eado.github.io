@@ -11,3 +11,9 @@ paginate: 5
 paginate_path: "/blog/:num/"
 
 encoding: utf-8
+
+pre_build:
+  commands:
+    - export LC_ALL="C.UTF-8"
+    - export LANG="en_US.UTF-8"
+    - export LANGUAGE="en_US.UTF-8"
